@@ -1,0 +1,138 @@
+#toolBtnGroup {
+    flex-direction: row-reverse;
+    padding: 10px;    
+}
+
+#toolBtnGroup button {
+    margin: 0 5px;
+}
+
+#terminalHeader {
+    padding: 2px 1.25em;
+}
+
+#terminalBody {
+    color: #ffffff;
+    background-color: #000000;
+    padding: 0px;
+}
+
+#terminalSeparator {
+    width: 100%;
+    border: 1px solid grey;
+}
+
+#terminal {
+    padding: 1.25em;
+    min-height: 250px;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+#terminalQuote {
+    padding: 5px 1.25em;
+}
+
+.minimise-animation {
+    -webkit-animation: minimise 5s ; /* Safari 4.0 - 8.0 */
+    animation: minimise 5s;
+    animation-fill-mode: forwards;    
+}
+
+.fullscreen-animation {
+    -webkit-animation: fullscreen 5s ; /* Safari 4.0 - 8.0 */
+    animation: fullscreen 5s;
+    animation-fill-mode: forwards;    
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes fullscreen {
+    0%   {
+    }
+    100% {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        z-index: 500;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* Standard syntax */
+@keyframes fullscreen {
+    0%   {
+    }
+    100% {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        z-index: 500;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes minimise {
+    0%   {
+        position: fixed;
+        opacity: 1;
+    }
+    25% {
+        position: fixed;
+        right: -15%;
+        top: -15%;
+        opacity: 0.75;
+    }
+    50% {
+        position: fixed;
+        right: -30%;
+        top: -30%;
+        opacity: 0.50;
+    }
+    75% {
+        position: fixed;
+        right: -40%;
+        top: -40%;
+        opacity: 0.25;
+    }
+    100% {
+        position: fixed;
+        right: -50%;
+        top: -50%;
+        opacity: 0;
+    }
+}
+
+/* Standard syntax */
+@keyframes minimise {
+    0%   {
+        position: fixed;
+        opacity: 1;
+    }
+    25% {
+        position: fixed;
+        right: -15%;
+        top: -15%;
+        opacity: 0.75;
+    }
+    50% {
+        position: fixed;
+        right: -30%;
+        top: -30%;
+        opacity: 0.50;
+    }
+    75% {
+        position: fixed;
+        right: -40%;
+        top: -40%;
+        opacity: 0.25;
+    }
+    100% {
+        position: fixed;
+        right: -50%;
+        top: -50%;
+        opacity: 0;
+    }
+}
