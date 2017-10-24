@@ -46,7 +46,7 @@
               </div>
               <div id="terminalSeparator"></div>
               <div id="terminalQuote">
-                <footer class="blockquote-footer">"Learning to code is the single best thing anyone can do to get the most out of the amazing future in front of us." <cite title="Source Title">- Marc Andreessen</cite></footer>                  
+                <footer class="blockquote-footer" *ngFor="let quote of quotes">{{ quote }}</footer>                  
               </div>
             </div>
           </div>

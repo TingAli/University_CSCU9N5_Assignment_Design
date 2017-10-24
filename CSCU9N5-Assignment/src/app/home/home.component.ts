@@ -9,6 +9,7 @@ import { SortablejsOptions } from 'angular-sortablejs';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  quotes = [];
   method = [];
   components = ['ForLoopOne', 'ForLoopTwo', 'IfStatementOne', 'IfStatementTwo'];
   options: SortablejsOptions = {    
@@ -18,7 +19,9 @@ export class HomeComponent implements OnInit {
     private router: Router) {
 
     this.options = {
-      group: 'Manx Components',
+      group: {
+        name: 'Manx Components'
+      },
     };
   }
 
@@ -53,6 +56,14 @@ export class HomeComponent implements OnInit {
     jQuery(".min-btn").click(function () {
       jQuery("#terminalCard").addClass("minimise-animation");
       jQuery("#terminalTaskBarItem").addClass("show");
+    });
+
+    jQuery(".exp-btn").click(function () {
+      if(jQuery("#terminalCard").hasClass("fullscreen-animation")) {
+        jQuery("#terminalCard").removeClass("fullscreen-animation");
+      } else {
+        jQuery("#terminalCard").addClass("fullscreen-animation");
+      }
     });
 
     jQuery("#terminalTaskBarItem").click(function () {

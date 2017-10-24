@@ -30,7 +30,10 @@
 }
 
 #terminalQuote {
-    padding: 5px 1.25em;
+    padding: 1.25em;
+    min-height: 250px;
+    max-height: 350px;
+    overflow-y: auto;
 }
 
 .minimise-animation {
