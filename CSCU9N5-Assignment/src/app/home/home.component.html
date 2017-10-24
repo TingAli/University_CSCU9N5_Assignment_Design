@@ -6,10 +6,12 @@
               Method
             </div>
             <div class="card-body">
-              <blockquote class="blockquote mb-0">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-              </blockquote>
+              <!-- Insert Method -->
+              <div id="methodContainer" [sortablejs]="method" [sortablejsOptions]="options">
+                <div class="component" *ngFor="let component of method">
+                  <p>{{ component }}</p>
+                </div>
+              </div>
             </div>
           </div>
       </div>
@@ -19,10 +21,12 @@
               Components
             </div>
             <div class="card-body">
-              <blockquote class="blockquote mb-0">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-              </blockquote>
+              <!-- Insert Components -->
+              <div id="componentsContainer" [sortablejs]="components" [sortablejsOptions]="options">
+                <div class="component" *ngFor="let component of components">
+                  <p>{{ component }}</p>
+                </div>
+              </div>
             </div>
           </div>
       </div>
@@ -50,6 +54,5 @@
     </div>
     <div id="toolBtnGroup" class="row">
         <button id="runBtn" type="button" class="btn btn-success float-right">RUN</button>
-        <button id="addBtn" type="button" class="btn btn-danger float-right">ADD</button>
-    </div>   
+    </div>
 </div>

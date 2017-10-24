@@ -1,8 +1,9 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home.component';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '../shared';
 
 const homeRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -14,13 +15,16 @@ const homeRouting: ModuleWithProviders = RouterModule.forChild([
 ]);
 
 @NgModule({
-  imports: [
-    homeRouting,
-    SharedModule
-  ],
   declarations: [
     HomeComponent
   ],
+  imports: [
+    BrowserModule,
+    SharedModule,
+    homeRouting
+  ],
+  exports: [
+  ],  
   providers: [
   ]
 })

@@ -45,6 +45,27 @@
     animation-fill-mode: forwards;    
 }
 
+#methodContainer {
+    height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#componentsContainer {
+    height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.component {
+    border: 2px solid rgba(0, 0, 0, 0.25);
+    margin: 5px;
+    padding: 5px;
+    min-height: 50px;
+}
+
+/* KEYFRAMES BELOW */
+
 /* Safari 4.0 - 8.0 */
 @-webkit-keyframes fullscreen {
     0%   {
