@@ -75,6 +75,11 @@
     cursor: -webkit-grab;
 }
 
+#terminalWindowIcon {
+    position: absolute;
+    margin-left: 5px;
+}
+
 .custom-select {
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
@@ -83,6 +88,10 @@
 
 .input-group-addon:not(:last-child) {
     min-width: 150px;
+}
+
+#page-close-overlay {
+    
 }
 
 /* KEYFRAMES BELOW */
