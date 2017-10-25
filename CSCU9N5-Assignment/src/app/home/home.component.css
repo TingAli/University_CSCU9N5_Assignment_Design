@@ -67,6 +67,24 @@
     min-height: 50px;
 }
 
+.component p {
+    margin: 12.5px 10px;
+}
+
+.component:hover {
+    cursor: -webkit-grab;
+}
+
+.custom-select {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    width: 100%;
+}
+
+.input-group-addon:not(:last-child) {
+    min-width: 150px;
+}
+
 /* KEYFRAMES BELOW */
 
 /* Safari 4.0 - 8.0 */

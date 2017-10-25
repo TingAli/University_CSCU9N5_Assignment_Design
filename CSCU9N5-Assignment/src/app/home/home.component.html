@@ -9,7 +9,48 @@
               <!-- Insert Method -->
               <div id="methodContainer" [sortablejs]="method" [sortablejsOptions]="options">
                 <div class="component" *ngFor="let component of method">
-                  <p>{{ component }}</p>
+                  <p>{{ component.componentName }}</p>
+                  <div id="booleanGroup" *ngIf="component.isIfStatement">
+                    <div class="input-group">
+                      <span class="input-group-addon" id="{{ component.componentName }}">Boolean One</span>
+                      <select id="{{ component.componentName }}-bool-one" class="custom-select">
+                        <option selected>Select True/False</option>
+                        <option value="1">True</option>
+                        <option value="0">False</option>
+                      </select>
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon" id="{{ component.componentName }}">Boolean Two</span>
+                      <select id="{{ component.componentName }}-bool-two" class="custom-select">
+                        <option selected>Select True/False</option>
+                        <option value="1">True</option>
+                        <option value="0">False</option>
+                      </select>
+                    </div>
+                    <br>
+                    <div class="input-group">
+                      <span class="input-group-addon" id="{{ component.componentName }}">Output One</span>
+                      <input id="{{ component.componentName }}-output-one" type="text" class="form-control" placeholder="Output One...">
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon" id="{{ component.componentName }}">Output Two</span>
+                      <input id="{{ component.componentName }}-output-two" type="text" class="form-control" placeholder="Output Two...">
+                    </div>
+                  </div>
+                  <div id="forLoopGroup" *ngIf="component.isForLoop">
+                    <div class="input-group">
+                      <span class="input-group-addon" id="{{ component.componentName }}">Start Index</span>
+                      <input id="{{ component.componentName }}-startIndex" type="number" class="form-control" placeholder="Start Index...">
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon" id="{{ component.componentName }}">End Index</span>
+                      <input id="{{ component.componentName }}-endIndex" type="number" class="form-control" placeholder="End Index...">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="{{ component.componentName }}">Increment</span>
+                        <input id="{{ component.componentName }}-increment" type="number" class="form-control" placeholder="Increment...">
+                      </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -24,7 +65,7 @@
               <!-- Insert Components -->
               <div id="componentsContainer" [sortablejs]="components" [sortablejsOptions]="options">
                 <div class="component" *ngFor="let component of components">
-                  <p>{{ component }}</p>
+                  <p>{{ component.componentName }}</p>
                 </div>
               </div>
             </div>
@@ -42,17 +83,17 @@
             </div>
             <div id="terminalBody" class="card-body">
               <div id="terminal">
-                  <p>> </p>      
+                  <p *ngFor="let outputLine of output">> {{ outputLine }}</p>      
               </div>
               <div id="terminalSeparator"></div>
               <div id="terminalQuote">
-                <footer class="blockquote-footer" *ngFor="let quote of quotes">{{ quote }}</footer>                  
+                <footer class="blockquote-footer" *ngFor="let quoteLine of quotes">> {{ quoteLine }}</footer>                  
               </div>
             </div>
           </div>
       </div>
     </div>
     <div id="toolBtnGroup" class="row">
-        <button id="runBtn" type="button" class="btn btn-success float-right">RUN</button>
+        <button id="runBtn" type="button" class="btn btn-success float-right" (click)="run();">RUN</button>
     </div>
 </div>
