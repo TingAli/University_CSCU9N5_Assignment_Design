@@ -45,11 +45,11 @@ export class HomeComponent implements OnInit {
     var returnValue = "";
     
     if(boolOne) {
-      returnValue + outputOne;
+      returnValue += outputOne;
     }
 
     if(boolTwo) {
-      returnValue + outputTwo;
+      returnValue += outputTwo;
     }
 
     return returnValue;
@@ -66,26 +66,61 @@ export class HomeComponent implements OnInit {
     return result;
   }
 
+  compile(): void {
+    this.preOutput.forEach(preOutputElement => {
+      this.output.push(preOutputElement);
+    });
+    this.preQuotes.forEach(preQuoteElement => {
+      this.quotes.push(preQuoteElement);
+    });
+
+    this.method.forEach(methodBlock => {
+      if(methodBlock.isForLoop) {
+        var forLoopStartIndexInputId = "#" + methodBlock.componentName + "-startIndex";
+        var forLoopEndIndexInputId = "#" + methodBlock.componentName + "-endIndex";
+        var forLoopIncrementInputId = "#" + methodBlock.componentName + "-increment";
+        var forLoopStartIndexValue = parseInt(jQuery(forLoopStartIndexInputId).val().toString());
+        var forLoopEndIndexValue = parseInt(jQuery(forLoopEndIndexInputId).val().toString());
+        var forLoopIncrementValue = parseInt(jQuery(forLoopIncrementInputId).val().toString());
+
+        var resultOfFor = this.forLoop(forLoopStartIndexValue, forLoopEndIndexValue, forLoopIncrementValue);      
+      }
+      else if(methodBlock.isIfStatement) {
+        var ifStatementBoolOneInputId = "#" + methodBlock.componentName + "-bool-one";
+        var ifStatementBoolTwoInputId = "#" + methodBlock.componentName + "-bool-two";
+        var ifStatementOutputOneInputId = "#" + methodBlock.componentName + "-output-one";
+        var ifStatementOutputTwoInputId = "#" + methodBlock.componentName + "-output-two";
+        var ifStatementBoolOneValue = jQuery(ifStatementBoolOneInputId).val() === "true";
+        var ifStatementBoolTwoValue = jQuery(ifStatementBoolTwoInputId).val() === "true";
+        var ifStatementOutputOneValue = jQuery(ifStatementOutputOneInputId).val().toString();
+        var ifStatementOutputTwoValue = jQuery(ifStatementOutputTwoInputId).val().toString();
+
+        var resultOfIf = this.ifStatement(ifStatementBoolOneValue, ifStatementBoolTwoValue, 
+          ifStatementOutputOneValue, ifStatementOutputTwoValue);
+      }
+    });
+  }
+
   validate(): boolean {
-    
+    this.doLoadAnimation();
     return true;
   }
 
-  run() {
+  run(): void {
     if(this.validate()) {
-      this.preOutput.forEach(preOutputElement => {
-        this.output.push(preOutputElement);
-      });
-      this.preQuotes.forEach(preQuoteElement => {
-        this.quotes.push(preQuoteElement);
-      });
+      this.compile();
+      this.doLoadAnimation();
     } else {
 
     }
   }
 
-  ngOnInit() {
+  doLoadAnimation(): void {
     jQuery(".navbar-brand-overlay").addClass("load-animation");
+  }
+
+  ngOnInit() {
+    this.doLoadAnimation();
 
     jQuery(".min-btn").click(function () {
       jQuery("#terminalCard").addClass("minimise-animation");
