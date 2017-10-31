@@ -103,6 +103,36 @@ export class HomeComponent implements OnInit {
 
   validate(): boolean {
     this.doLoadAnimation();
+
+    this.method.forEach(methodBlock => {
+      if(methodBlock.isForLoop) {
+        var forLoopStartIndexInputId = "#" + methodBlock.componentName + "-startIndex";
+        var forLoopEndIndexInputId = "#" + methodBlock.componentName + "-endIndex";
+        var forLoopIncrementInputId = "#" + methodBlock.componentName + "-increment";
+        var forLoopStartIndexValue = parseInt(jQuery(forLoopStartIndexInputId).val().toString());
+        var forLoopEndIndexValue = parseInt(jQuery(forLoopEndIndexInputId).val().toString());
+        var forLoopIncrementValue = parseInt(jQuery(forLoopIncrementInputId).val().toString());
+
+        if((!jQuery.isNumeric(forLoopStartIndexValue) && forLoopStartIndexValue < 0) || (!jQuery.isNumeric(forLoopEndIndexValue) && forLoopEndIndexValue < forLoopStartIndexValue) || (!jQuery.isNumeric(forLoopIncrementValue) && forLoopIncrementValue < 0)) {
+          return false;
+        }
+      }
+      else if (methodBlock.isIfStatement) {
+        var ifStatementBoolOneInputId = "#" + methodBlock.componentName + "-bool-one";
+        var ifStatementBoolTwoInputId = "#" + methodBlock.componentName + "-bool-two";
+        var ifStatementOutputOneInputId = "#" + methodBlock.componentName + "-output-one";
+        var ifStatementOutputTwoInputId = "#" + methodBlock.componentName + "-output-two";
+        var ifStatementBoolOneValue = jQuery(ifStatementBoolOneInputId).val() === "true";
+        var ifStatementBoolTwoValue = jQuery(ifStatementBoolTwoInputId).val() === "true";
+        var ifStatementOutputOneValue = jQuery(ifStatementOutputOneInputId).val().toString();
+        var ifStatementOutputTwoValue = jQuery(ifStatementOutputTwoInputId).val().toString();
+
+        if((ifStatementOutputOneValue.length <= 0) || (ifStatementOutputTwoValue.length <= 0)) {
+          return false;
+        }
+      }
+    });
+
     return true;
   }
 
@@ -123,6 +153,7 @@ export class HomeComponent implements OnInit {
     this.doLoadAnimation();
 
     jQuery(".min-btn").click(function () {
+      jQuery("#terminalCard").removeClass("fullscreen-animation");      
       jQuery("#terminalCard").addClass("minimise-animation");
       jQuery("#terminalTaskBarItem").addClass("show");
     });
@@ -131,11 +162,13 @@ export class HomeComponent implements OnInit {
       if(jQuery("#terminalCard").hasClass("fullscreen-animation")) {
         jQuery("#terminalCard").removeClass("fullscreen-animation");
       } else {
+        jQuery("#terminalCard").removeClass("minimise-animation");
         jQuery("#terminalCard").addClass("fullscreen-animation");
       }
     });
 
     jQuery("#terminalTaskBarItem").click(function () {
+      jQuery("#terminalCard").removeClass("fullscreen-animation");      
       jQuery("#terminalCard").removeClass("minimise-animation");
       jQuery("#terminalTaskBarItem").removeClass("show");
     });
