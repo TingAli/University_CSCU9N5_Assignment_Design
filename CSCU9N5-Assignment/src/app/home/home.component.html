@@ -1,4 +1,32 @@
 <div id="homePage" class="container">
+  <div id="walkthrough" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Tutorial</h5>
+            <button type="button" class="tutorial-close-btn close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Insert Video -->
+            <video width="400" controls>
+              <source src="mov_bbb.mp4" type="video/mp4">
+              <source src="mov_bbb.ogg" type="video/ogg">
+              Your browser does not support HTML5 video.
+            </video>
+            
+            <p>
+            Video courtesy of 
+            <a href="https://www.bigbuckbunny.org/" target="_blank">Big Buck Bunny</a>
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="tutorial-close-btn btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-sm-6">
           <div class="card">

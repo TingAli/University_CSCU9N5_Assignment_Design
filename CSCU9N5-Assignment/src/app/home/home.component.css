@@ -90,6 +90,14 @@
     min-width: 150px;
 }
 
+.show {
+    display: block;
+}
+
+#walkthrough .modal-body {
+    text-align: center;
+}
+
 ::-webkit-scrollbar {
     width: 6px;
 }

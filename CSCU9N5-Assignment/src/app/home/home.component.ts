@@ -1,5 +1,5 @@
 import * as jQuery from 'jquery';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { SortablejsOptions } from 'angular-sortablejs';
 import { BlockComponent } from '../shared/classes/blockComponent';
@@ -176,6 +176,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.doLoadAnimation();
+    jQuery("#walkthrough").addClass("show");  
+    
+    jQuery(".tutorial-close-btn").click(function () {
+      // Insert audio file to play
+
+      jQuery("#walkthrough").removeClass("show");
+    });
 
     jQuery(".min-btn").click(function () {
       jQuery("#terminalCard").removeClass("fullscreen-animation");      
