@@ -14,7 +14,6 @@ export class HomeComponent implements OnInit {
   private forLoopTwo: BlockComponent;
   private ifStatementOne: BlockComponent;
   private ifStatementTwo: BlockComponent;
-  private preOutput: Array<string>;  
   private output: Array<string>;
   private preQuotes: Array<string>;
   private quotes: Array<string>;
@@ -29,7 +28,6 @@ export class HomeComponent implements OnInit {
           name: 'Manx Components'
         }
       };
-      this.preOutput = [];
       this.output = [];
       this.preQuotes = [];
       this.quotes = [];
@@ -43,37 +41,45 @@ export class HomeComponent implements OnInit {
 
   ifStatement(boolOne: boolean, boolTwo: boolean, outputOne: string, outputTwo: string): string {
     var returnValue = "";
-    
+    this.preQuotes.push("Start of an If Statement:");
+
+    this.preQuotes.push("Checking Boolean One...");
     if(boolOne) {
-      returnValue += outputOne;
+      this.preQuotes.push("Boolean One is true, so it will output Output One.");
+      returnValue += " " + outputOne;
+    } else {
+      this.preQuotes.push("Boolean One is false, so it will not output Output One.");;
     }
 
+    this.preQuotes.push("Checking Boolean Two...");;
     if(boolTwo) {
-      returnValue += outputTwo;
+      this.preQuotes.push("Boolean Two is true, so it will output Output Two.");
+      returnValue += " " + outputTwo;
+    } else {
+      this.preQuotes.push("Boolean Two is false, so it will not output Output Two.");
     }
 
+    this.preQuotes.push("End of an If Statement.");
     return returnValue;
   }
 
   forLoop(startIndex: number, endIndex: number, increment: number): number {
     var result = 0;
+    this.preQuotes.push("Start of a For Loop:");
 
     for (var index = startIndex; index <= endIndex; index+=increment)
-    {         
-        result = index;
+    {   
+      this.preQuotes.push("Current Index: " + index);
+      result = index;
+      this.preQuotes.push("Current Result: " + result);
+      this.preQuotes.push("Index will now be incremented by: " + increment);
     }
 
+    this.preQuotes.push("End of a For Loop.");
     return result;
   }
 
   compile(): void {
-    this.preOutput.forEach(preOutputElement => {
-      this.output.push(preOutputElement);
-    });
-    this.preQuotes.forEach(preQuoteElement => {
-      this.quotes.push(preQuoteElement);
-    });
-
     this.method.forEach(methodBlock => {
       if(methodBlock.isForLoop) {
         var forLoopStartIndexInputId = "#" + methodBlock.componentName + "-startIndex";
@@ -84,6 +90,7 @@ export class HomeComponent implements OnInit {
         var forLoopIncrementValue = parseInt(jQuery(forLoopIncrementInputId).val().toString());
 
         var resultOfFor = this.forLoop(forLoopStartIndexValue, forLoopEndIndexValue, forLoopIncrementValue);      
+        this.output.push(resultOfFor.toString());
       }
       else if(methodBlock.isIfStatement) {
         var ifStatementBoolOneInputId = "#" + methodBlock.componentName + "-bool-one";
@@ -97,12 +104,17 @@ export class HomeComponent implements OnInit {
 
         var resultOfIf = this.ifStatement(ifStatementBoolOneValue, ifStatementBoolTwoValue, 
           ifStatementOutputOneValue, ifStatementOutputTwoValue);
+        this.output.push(resultOfIf.toString());
       }
+
+      this.preQuotes.forEach(preQuoteElement => {
+        this.quotes.push(preQuoteElement);
+      });
     });
   }
 
-  validate(): boolean {
-    this.doLoadAnimation();
+  validate(): boolean {    
+    var result = true;
 
     this.method.forEach(methodBlock => {
       if(methodBlock.isForLoop) {
@@ -113,8 +125,8 @@ export class HomeComponent implements OnInit {
         var forLoopEndIndexValue = parseInt(jQuery(forLoopEndIndexInputId).val().toString());
         var forLoopIncrementValue = parseInt(jQuery(forLoopIncrementInputId).val().toString());
 
-        if((!jQuery.isNumeric(forLoopStartIndexValue) && forLoopStartIndexValue < 0) || (!jQuery.isNumeric(forLoopEndIndexValue) && forLoopEndIndexValue < forLoopStartIndexValue) || (!jQuery.isNumeric(forLoopIncrementValue) && forLoopIncrementValue < 0)) {
-          return false;
+        if((forLoopStartIndexValue < 0) || (forLoopEndIndexValue < forLoopStartIndexValue) || (forLoopIncrementValue < 0)) {
+          result = false;
         }
       }
       else if (methodBlock.isIfStatement) {
@@ -127,21 +139,34 @@ export class HomeComponent implements OnInit {
         var ifStatementOutputOneValue = jQuery(ifStatementOutputOneInputId).val().toString();
         var ifStatementOutputTwoValue = jQuery(ifStatementOutputTwoInputId).val().toString();
 
-        if((ifStatementOutputOneValue.length <= 0) || (ifStatementOutputTwoValue.length <= 0)) {
-          return false;
+        if((ifStatementOutputOneValue.length == 0) || (ifStatementOutputTwoValue.length == 0)) {
+          result = false;
         }
       }
     });
 
-    return true;
+    return result;
   }
 
   run(): void {
+    this.preQuotes = [];
+    this.quotes = [];
+    this.output = [];
+
     if(this.validate()) {
       this.compile();
       this.doLoadAnimation();
     } else {
-
+      jQuery("#validation-error").css("display", "block");
+      jQuery("#validation-error").animate({
+        opacity: 1,
+      }, 3000, function() {
+        jQuery("#validation-error").animate({
+          opacity: 0,
+        }, 3000, function() {
+          jQuery("#validation-error").css("display", "none");          
+        });
+      });
     }
   }
 
@@ -165,6 +190,13 @@ export class HomeComponent implements OnInit {
         jQuery("#terminalCard").removeClass("minimise-animation");
         jQuery("#terminalCard").addClass("fullscreen-animation");
       }
+    });
+
+    jQuery(".close-btn").click(function () {
+      jQuery(window).scrollTop(0);
+      jQuery("#page-close-overlay").css("display", "block");
+      jQuery("#page-close-overlay").animate({opacity: "1"}, 3000);
+      jQuery("body").css("overflow", "hidden");
     });
 
     jQuery("#terminalTaskBarItem").click(function () {

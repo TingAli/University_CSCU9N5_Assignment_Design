@@ -7,3 +7,33 @@ Light Grey: #d0d3d5
 Bright Orange: #ff4300
 */
 
+#page-close-overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 9999;
+    background-color: #000000;
+    top: 0px;
+    left: 0px;
+    display: none;
+    opacity: 0;
+}
+
+#validation-error {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    background-color: #ff4300;
+    padding: 20px;
+    z-index: 9998;
+    margin: 20px;
+    display: none;
+    opacity: 0;
+    -moz-box-shadow: 3px 3px 5px 6px #ccc;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow: 3px 3px 5px 6px #ccc;  
+}
+
+#validation-error p {
+    margin: 2px;
+}
