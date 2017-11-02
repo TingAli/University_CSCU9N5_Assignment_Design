@@ -10,16 +10,16 @@ import { BlockComponent } from '../shared/classes/blockComponent';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  private forLoopOne: BlockComponent;
-  private forLoopTwo: BlockComponent;
-  private ifStatementOne: BlockComponent;
-  private ifStatementTwo: BlockComponent;
-  private output: Array<string>;
-  private preQuotes: Array<string>;
-  private quotes: Array<string>;
-  private method: Array<BlockComponent>;
-  private components: Array<BlockComponent>;
-  private options: SortablejsOptions;
+  public forLoopOne: BlockComponent;
+  public forLoopTwo: BlockComponent;
+  public ifStatementOne: BlockComponent;
+  public ifStatementTwo: BlockComponent;
+  public output: Array<string>;
+  public preQuotes: Array<string>;
+  public quotes: Array<string>;
+  public method: Array<BlockComponent>;
+  public components: Array<BlockComponent>;
+  public options: SortablejsOptions;
   
   constructor(
     private router: Router) {
@@ -218,7 +218,7 @@ export class HomeComponent implements OnInit {
       audio.src = "./../../assets/click.mp3";
       audio.load();
       audio.play();
-      
+
       jQuery(window).scrollTop(0);
       jQuery("#page-close-overlay").css("display", "block");
       jQuery("#page-close-overlay").animate({opacity: "1"}, 3000);
