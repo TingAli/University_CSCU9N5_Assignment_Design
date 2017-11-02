@@ -98,6 +98,14 @@
     text-align: center;
 }
 
+.tutorial-close-btn-main {
+    background-color: #007bff;
+}
+
+.modal-dialog {
+    margin-top: 80px;
+}
+
 ::-webkit-scrollbar {
     width: 6px;
 }

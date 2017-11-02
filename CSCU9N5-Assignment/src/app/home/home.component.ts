@@ -149,6 +149,11 @@ export class HomeComponent implements OnInit {
   }
 
   run(): void {
+    let audio = new Audio();
+    audio.src = "./../../assets/click.mp3";
+    audio.load();
+    audio.play();
+
     this.preQuotes = [];
     this.quotes = [];
     this.output = [];
@@ -174,13 +179,22 @@ export class HomeComponent implements OnInit {
     jQuery(".navbar-brand-overlay").addClass("load-animation");
   }
 
+  playClickSound(): void {
+    let audio = new Audio();
+    audio.src = "./../../assets/click.mp3";
+    audio.load();
+    audio.play();
+  }
+
   ngOnInit() {
     this.doLoadAnimation();
     jQuery("#walkthrough").addClass("show");  
     
     jQuery(".tutorial-close-btn").click(function () {
-      // Insert audio file to play
-
+      let audio = new Audio();
+      audio.src = "./../../assets/click.mp3";
+      audio.load();
+      audio.play();
       jQuery("#walkthrough").removeClass("show");
     });
 
@@ -200,6 +214,11 @@ export class HomeComponent implements OnInit {
     });
 
     jQuery(".close-btn").click(function () {
+      let audio = new Audio();
+      audio.src = "./../../assets/click.mp3";
+      audio.load();
+      audio.play();
+      
       jQuery(window).scrollTop(0);
       jQuery("#page-close-overlay").css("display", "block");
       jQuery("#page-close-overlay").animate({opacity: "1"}, 3000);
